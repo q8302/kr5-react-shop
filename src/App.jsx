@@ -1,10 +1,11 @@
-import { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import CatalogPage from './pages/CatalogPage';
+import OrderPage from './pages/OrderPage';
 import CartPage from './pages/CartPage';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { addToCart, removeFromCart, updateQuantity, getTotalItems } from './utils/cartUtils';
+import { useState } from 'react';
 
 function App() {
     const [cart, setCart] = useLocalStorage('react-shop-cart', []);
@@ -30,9 +31,15 @@ function App() {
                 cartCount={cartCount}
                 onCartClick={() => setView(view === 'cart' ? 'catalog' : 'cart')}
             />
-            {view === 'catalog' ? (
-                <CatalogPage onAddToCart={handleAddToCart} />
-            ) : (
+
+            {view === 'catalog' && (
+                <>
+                    <CatalogPage onAddToCart={handleAddToCart} />
+                    <OrderPage />
+                </>
+            )}
+
+            {view === 'cart' && (
                 <CartPage
                     cart={cart}
                     onRemove={handleRemoveFromCart}

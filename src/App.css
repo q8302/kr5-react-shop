@@ -496,3 +496,129 @@ body {
     font-size: 26px;
   }
 }
+
+
+
+/* Order Page */
+.order-page {
+  display: grid;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.order-page__header {
+  display: grid;
+  gap: 8px;
+}
+
+.order-page__header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.order-page__header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.order-form {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.form-field {
+  display: grid;
+  gap: 6px;
+}
+
+.form-field__label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.form-field__control {
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--text);
+  background-color: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s ease;
+}
+
+.form-field__control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+.form-field__control--error {
+  border-color: var(--danger);
+  background-color: rgba(239, 68, 68, 0.04);
+}
+
+.form-field__error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.order-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.order-form__submit,
+.order-form__reset {
+  padding: 12px 20px;
+  font: inherit;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.order-form__submit {
+  color: #ffffff;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border: none;
+}
+
+.order-form__submit:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.order-form__reset {
+  color: var(--text);
+  background-color: transparent;
+  border: 2px solid var(--border);
+}
+
+.order-form__reset:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.form-message {
+  margin: 0;
+  padding: 14px 16px;
+  background-color: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 10px;
+  color: var(--primary-dark);
+  font-weight: 500;
+}
