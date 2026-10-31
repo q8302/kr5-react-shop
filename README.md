@@ -151,3 +151,31 @@ GitHub Pages: https://q8302.github.io/kr5-react-shop/
 
 ### Источник данных
 На текущем этапе используется mock-файл `public/products.json`. В будущем его можно заменить на backend API (`GET /api/products`).
+
+## Практическая работа №24
+
+Тема: «Material UI в React-проекте интернет-магазина: карточки, форма заявки, сообщения и тема приложения».
+
+### Выполнено:
+- установлен Material UI и зависимости (`@mui/material`, `@emotion/react`, `@emotion/styled`);
+- установлены иконки (`@mui/icons-material`);
+- создана тема `src/theme/muiTheme.js` (цвета, скругления, шрифты);
+- приложение обёрнуто в `ThemeProvider` и `CssBaseline`;
+- обновлён `Header` с использованием `AppBar`, `Toolbar`, `Button`, `Badge` и кастомного градиента;
+- обновлены карточки товаров с использованием `Card`, `CardMedia`, `CardContent`, `CardActions`, `Chip`, `Typography`, `Button`;
+- добавлена интерактивная кнопка «Добавить» с выбором количества прямо в каталоге;
+- обновлены элементы управления каталогом (`TextField`, `FormControl`, `InputLabel`, `Select`, `MenuItem`);
+- обновлена форма заявки с использованием `TextField`, `Button`, `Alert`, `Stack`, `Paper`;
+- сохранён controlled-подход к полям формы и базовая валидация;
+- ошибки формы выводятся через `error` и `helperText` в компоненте `TextField`;
+- сообщения об успехе/ошибке формы выводятся через `Alert`;
+- состояния загрузки отображаются через `CircularProgress`;
+- состояния ошибки загрузки отображаются через `Alert` с кнопкой повтора;
+- сохранена маршрутизация React Router (все страницы открываются без перезагрузки);
+- сохранён API-слой загрузки данных (`src/api/productsApi.js`).
+
+### Использованные компоненты Material UI:
+- **Навигация и шапка:** `AppBar`, `Toolbar`, `Box`, `Typography`, `Button`, `Badge`, `ShoppingCartIcon`.
+- **Карточки и товары:** `Card`, `CardMedia`, `CardContent`, `CardActions`, `Chip`, `Stack`, `Typography`, `Button`.
+- **Форма и ввод:** `TextField`, `Paper`, `Alert`, `Button`, `Stack`.
+- **Состояния:** `CircularProgress`, `Alert`.

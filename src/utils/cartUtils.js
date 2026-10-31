@@ -1,7 +1,7 @@
 export function addToCart(cart, product) {
-    const existing = cart.find((item) => item.id === product.id);
+    const existingItem = cart.find((item) => item.id === product.id);
 
-    if (existing) {
+    if (existingItem) {
         return cart.map((item) =>
             item.id === product.id
                 ? { ...item, quantity: item.quantity + 1 }
@@ -26,10 +26,10 @@ export function updateQuantity(cart, productId, quantity) {
     );
 }
 
-export function getTotalPrice(cart) {
-    return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+export function getTotalItems(cart) {
+    return cart.reduce((total, item) => total + item.quantity, 0);
 }
 
-export function getTotalItems(cart) {
-    return cart.reduce((sum, item) => sum + item.quantity, 0);
+export function getTotalPrice(cart) {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
 }
