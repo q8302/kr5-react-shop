@@ -1,3 +1,5 @@
+import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+
 function CatalogControls({
                              searchQuery,
                              selectedCategory,
@@ -7,47 +9,55 @@ function CatalogControls({
                              onSortChange
                          }) {
     return (
-        <section className="catalog-controls" aria-label="Управление каталогом">
-            <div className="catalog-controls__group">
-                <label htmlFor="catalog-search">Поиск товара</label>
-                <input
-                    id="catalog-search"
-                    className="catalog-controls__input"
-                    type="search"
-                    placeholder="Введите название товара"
-                    value={searchQuery}
-                    onChange={(event) => onSearchChange(event.target.value)}
-                />
-            </div>
-            <div className="catalog-controls__group">
-                <label htmlFor="category-filter">Категория</label>
-                <select
+        <Box
+            component="section"
+            aria-label="Управление каталогом"
+            sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
+                gap: 2,
+                mb: 3
+            }}
+        >
+            <TextField
+                label="Поиск товара"
+                type="search"
+                value={searchQuery}
+                onChange={(event) => onSearchChange(event.target.value)}
+                placeholder="Введите название товара"
+                fullWidth
+            />
+            <FormControl fullWidth>
+                <InputLabel id="category-filter-label">Категория</InputLabel>
+                <Select
+                    labelId="category-filter-label"
                     id="category-filter"
-                    className="catalog-controls__select"
                     value={selectedCategory}
+                    label="Категория"
                     onChange={(event) => onCategoryChange(event.target.value)}
                 >
-                    <option value="all">Все категории</option>
-                    <option value="kitchen">Кухня</option>
-                    <option value="home">Дом</option>
-                    <option value="electronics">Электроника</option>
-                </select>
-            </div>
-            <div className="catalog-controls__group">
-                <label htmlFor="sort-select">Сортировка</label>
-                <select
+                    <MenuItem value="all">Все категории</MenuItem>
+                    <MenuItem value="kitchen">Кухня</MenuItem>
+                    <MenuItem value="home">Дом</MenuItem>
+                    <MenuItem value="electronics">Электроника</MenuItem>
+                </Select>
+            </FormControl>
+            <FormControl fullWidth>
+                <InputLabel id="sort-select-label">Сортировка</InputLabel>
+                <Select
+                    labelId="sort-select-label"
                     id="sort-select"
-                    className="catalog-controls__select"
                     value={sortType}
+                    label="Сортировка"
                     onChange={(event) => onSortChange(event.target.value)}
                 >
-                    <option value="default">По умолчанию</option>
-                    <option value="price-asc">Сначала дешевле</option>
-                    <option value="price-desc">Сначала дороже</option>
-                    <option value="title-asc">По названию А-Я</option>
-                </select>
-            </div>
-        </section>
+                    <MenuItem value="default">По умолчанию</MenuItem>
+                    <MenuItem value="price-asc">Сначала дешевле</MenuItem>
+                    <MenuItem value="price-desc">Сначала дороже</MenuItem>
+                    <MenuItem value="title-asc">По названию А-Я</MenuItem>
+                </Select>
+            </FormControl>
+        </Box>
     );
 }
 

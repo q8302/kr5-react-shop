@@ -3,10 +3,11 @@ import CatalogControls from '../components/CatalogControls';
 import ProductList from '../components/ProductList';
 import { getProducts } from '../api/productsApi';
 import { getPreparedProducts } from '../utils/productUtils';
+import { Alert, Box, Button, CircularProgress, Typography } from '@mui/material';
 
 const ADDED_COUNT_STORAGE_KEY = 'kr5-react-shop-added-count';
 
-function CatalogPage({ onAddToCart }) {
+function CatalogPage({ onAddToCart, cart, onUpdateQuantity }) {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
@@ -31,14 +32,10 @@ function CatalogPage({ onAddToCart }) {
             try {
                 setIsLoading(true);
                 setError('');
-                const loadedProducts = await getProducts({
-                    signal: controller.signal
-                });
+                const loadedProducts = await getProducts({ signal: controller.signal });
                 setProducts(loadedProducts);
             } catch (err) {
-                if (err.name === 'AbortError') {
-                    return;
-                }
+                if (err.name === 'AbortError') return;
                 setError(err.message || 'Не удалось загрузить товары.');
             } finally {
                 setIsLoading(false);
@@ -56,12 +53,7 @@ function CatalogPage({ onAddToCart }) {
         setReloadKey((prevKey) => prevKey + 1);
     }
 
-    const visibleProducts = getPreparedProducts(
-        products,
-        searchQuery,
-        selectedCategory,
-        sortType
-    );
+    const visibleProducts = getPreparedProducts(products, searchQuery, selectedCategory, sortType);
 
     function handleAdd(product) {
         onAddToCart(product);
@@ -71,9 +63,10 @@ function CatalogPage({ onAddToCart }) {
     if (isLoading) {
         return (
             <main className="app-main">
-                <section className="catalog-page">
-                    <p className="status-message">Загрузка товаров...</p>
-                </section>
+                <Box sx={{ display: 'grid', placeItems: 'center', minHeight: 240 }}>
+                    <CircularProgress />
+                    <Typography sx={{ mt: 2 }}>Загрузка товаров...</Typography>
+                </Box>
             </main>
         );
     }
@@ -81,13 +74,14 @@ function CatalogPage({ onAddToCart }) {
     if (error) {
         return (
             <main className="app-main">
-                <section className="catalog-page">
-                    <h2>Не удалось загрузить товары</h2>
-                    <p className="status-message status-message--error">{error}</p>
-                    <button className="button-link" type="button" onClick={handleRetry}>
+                <Box sx={{ display: 'grid', gap: 2 }}>
+                    <Alert severity="error">
+                        Не удалось загрузить каталог: {error}
+                    </Alert>
+                    <Button variant="contained" type="button" onClick={handleRetry}>
                         Попробовать снова
-                    </button>
-                </section>
+                    </Button>
+                </Box>
             </main>
         );
     }
@@ -113,6 +107,8 @@ function CatalogPage({ onAddToCart }) {
                 <ProductList
                     products={visibleProducts}
                     onAddToCart={handleAdd}
+                    cart={cart}
+                    onUpdateQuantity={onUpdateQuantity}
                 />
             </section>
         </main>

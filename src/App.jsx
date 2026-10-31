@@ -35,11 +35,16 @@ function App() {
 
                 <Route
                     path="/catalog"
-                    element={<CatalogPage onAddToCart={handleAddToCart} />}
+                    element={
+                        <CatalogPage
+                            onAddToCart={handleAddToCart}
+                            cart={cart}
+                            onUpdateQuantity={handleUpdateQuantity}
+                        />
+                    }
                 />
 
                 <Route path="/catalog/:productId" element={<ProductPage />} />
-
                 <Route path="/order" element={<OrderPage />} />
 
                 <Route
