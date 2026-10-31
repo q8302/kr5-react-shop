@@ -1,0 +1,45 @@
+import { useState } from 'react';
+import CatalogControls from '../components/CatalogControls';
+import ProductList from '../components/ProductList';
+import { products } from '../data/products';
+import { getPreparedProducts } from '../utils/productUtils';
+
+function CatalogPage({ onAddToCart }) {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('all');
+    const [sortType, setSortType] = useState('default');
+
+    const visibleProducts = getPreparedProducts(
+        products,
+        searchQuery,
+        selectedCategory,
+        sortType
+    );
+
+    return (
+        <main className="app-main">
+            <section className="catalog-page">
+                <div className="catalog-page__header">
+                    <h2>Каталог товаров</h2>
+                    <p>Найдено товаров: <strong>{visibleProducts.length}</strong></p>
+                </div>
+
+                <CatalogControls
+                    searchQuery={searchQuery}
+                    selectedCategory={selectedCategory}
+                    sortType={sortType}
+                    onSearchChange={setSearchQuery}
+                    onCategoryChange={setSelectedCategory}
+                    onSortChange={setSortType}
+                />
+
+                <ProductList
+                    products={visibleProducts}
+                    onAddToCart={onAddToCart}
+                />
+            </section>
+        </main>
+    );
+}
+
+export default CatalogPage;
