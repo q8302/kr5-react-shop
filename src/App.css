@@ -696,3 +696,16 @@ body {
     align-items: flex-start;
   }
 }
+.status-message {
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.status-message--error {
+  color: #991b1b;
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
