@@ -1,16 +1,47 @@
-# React + Vite
+# Контрольная работа №5 — React Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Тема: «Компонентная frontend-разработка на React или Vue с подготовкой проекта к подключению backend API».
 
-Currently, two official plugins are available:
+## Описание
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Проект представляет собой SPA-версию учебного интернет-магазина на React + Vite.
 
-## React Compiler
+Предметная область перенесена из предыдущих контрольных работ (КР №1–КР №4).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Практическая работа №19
 
-## Expanding the ESLint configuration
+Выполнено:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- создан проект `kr5-react-shop` через Vite;
+- проект запускается через `npm run dev`;
+- очищен демонстрационный шаблон Vite;
+- подготовлена структура `src/components`, `src/data`;
+- создан файл `src/data/products.js` (10 товаров);
+- создан компонент `Header`;
+- создан компонент `ProductCard`;
+- создан компонент `ProductList`;
+- товары выводятся через `map()` с `key={product.id}`;
+- данные передаются через props;
+- добавлены базовые стили.
+
+## Структура проекта
+
+- **public/** — статические файлы
+- **src/** — исходный код приложения
+    - **src/assets/** — изображения и иконки
+    - **src/components/** — React-компоненты
+        - `Header.jsx` — шапка сайта
+        - `ProductCard.jsx` — карточка товара
+        - `ProductList.jsx` — список товаров
+    - **src/data/** — данные товаров
+        - `products.js` — массив из 10 товаров
+    - `App.jsx` — главный компонент
+    - `App.css` — стили приложения
+    - `index.css` — базовые стили
+    - `main.jsx` — точка входа React
+- `index.html` — HTML-страница
+- `package.json` — зависимости проекта
+- `vite.config.js` — конфигурация Vite
+- `eslint.config.js` — настройки ESLint
+- `README.md` — описание проекта
+- `.gitignore` — исключения для Git
