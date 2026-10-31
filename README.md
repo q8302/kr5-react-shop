@@ -71,3 +71,8 @@
 - `src/utils/cartUtils.js` — функции корзины (добавить, удалить, обновить, сумма).
 - `src/pages/CartPage.jsx` — страница корзины.
 - Корзина сохраняется в `localStorage` (ключ `react-shop-cart`).
+
+
+## Ссылка на опубликованный проект
+
+GitHub Pages: https://q8302.github.io/kr5-react-shop/
