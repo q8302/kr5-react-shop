@@ -1,15 +1,16 @@
+import { Link } from 'react-router-dom';
 import { getTotalPrice } from '../utils/cartUtils';
 
-function CartPage({ cart, onRemove, onUpdateQuantity, onBackToCatalog }) {
+function CartPage({ cart, onRemove, onUpdateQuantity }) {
     if (cart.length === 0) {
         return (
             <main className="app-main">
                 <div className="cart-page">
                     <h2>Корзина</h2>
                     <p className="cart-page__empty">Ваша корзина пуста 🛒</p>
-                    <button className="cart-page__back" type="button" onClick={onBackToCatalog}>
+                    <Link to="/catalog" className="cart-page__back-link">
                         ← Вернуться к каталогу
-                    </button>
+                    </Link>
                 </div>
             </main>
         );
@@ -66,9 +67,10 @@ function CartPage({ cart, onRemove, onUpdateQuantity, onBackToCatalog }) {
                     </p>
                 </div>
 
-                <button className="cart-page__back" type="button" onClick={onBackToCatalog}>
+                {/* Заменили кнопку на ссылку */}
+                <Link to="/catalog" className="cart-page__back-link">
                     ← Вернуться к каталогу
-                </button>
+                </Link>
             </div>
         </main>
     );

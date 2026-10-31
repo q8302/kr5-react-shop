@@ -1,16 +1,17 @@
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
+import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
+import ProductPage from './pages/ProductPage';
 import OrderPage from './pages/OrderPage';
 import CartPage from './pages/CartPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { addToCart, removeFromCart, updateQuantity, getTotalItems } from './utils/cartUtils';
-import { useState } from 'react';
 
 function App() {
     const [cart, setCart] = useLocalStorage('react-shop-cart', []);
-    const [view, setView] = useState('catalog');
-
     const cartCount = getTotalItems(cart);
 
     function handleAddToCart(product) {
@@ -27,26 +28,33 @@ function App() {
 
     return (
         <div className="app">
-            <Header
-                cartCount={cartCount}
-                onCartClick={() => setView(view === 'cart' ? 'catalog' : 'cart')}
-            />
+            <Header cartCount={cartCount} />
 
-            {view === 'catalog' && (
-                <>
-                    <CatalogPage onAddToCart={handleAddToCart} />
-                    <OrderPage />
-                </>
-            )}
+            <Routes>
+                <Route path="/" element={<HomePage />} />
 
-            {view === 'cart' && (
-                <CartPage
-                    cart={cart}
-                    onRemove={handleRemoveFromCart}
-                    onUpdateQuantity={handleUpdateQuantity}
-                    onBackToCatalog={() => setView('catalog')}
+                <Route
+                    path="/catalog"
+                    element={<CatalogPage onAddToCart={handleAddToCart} />}
                 />
-            )}
+
+                <Route path="/catalog/:productId" element={<ProductPage />} />
+
+                <Route path="/order" element={<OrderPage />} />
+
+                <Route
+                    path="/cart"
+                    element={
+                        <CartPage
+                            cart={cart}
+                            onRemove={handleRemoveFromCart}
+                            onUpdateQuantity={handleUpdateQuantity}
+                        />
+                    }
+                />
+
+                <Route path="*" element={<NotFoundPage />} />
+            </Routes>
         </div>
     );
 }

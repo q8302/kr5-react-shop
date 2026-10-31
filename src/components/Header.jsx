@@ -1,4 +1,9 @@
-function Header({ cartCount, onCartClick }) {
+import { NavLink } from 'react-router-dom';
+
+function Header({ cartCount }) {
+    const getLinkClassName = ({ isActive }) =>
+        isActive ? 'site-nav__link site-nav__link--active' : 'site-nav__link';
+
     return (
         <header className="site-header">
             <div className="site-header__inner">
@@ -9,16 +14,22 @@ function Header({ cartCount, onCartClick }) {
                         <p className="site-header__subtitle">Учебный интернет-магазин на React</p>
                     </div>
                 </div>
-                <button
-                    className="site-header__cart"
-                    type="button"
-                    onClick={onCartClick}
-                    aria-label={`Корзина: ${cartCount} товаров`}
-                >
-                    <span aria-hidden="true">🛒</span>
-                    <span className="site-header__cart-label">Корзина</span>
-                    <span className="site-header__cart-count">{cartCount}</span>
-                </button>
+
+                <nav className="site-nav">
+                    <NavLink to="/" className={getLinkClassName} end>
+                        Главная
+                    </NavLink>
+                    <NavLink to="/catalog" className={getLinkClassName}>
+                        Каталог
+                    </NavLink>
+                    <NavLink to="/order" className={getLinkClassName}>
+                        Заявка
+                    </NavLink>
+
+                    <NavLink to="/cart" className={getLinkClassName}>
+                        🛒 Корзина <span className="site-header__cart-count">{cartCount}</span>
+                    </NavLink>
+                </nav>
             </div>
         </header>
     );
